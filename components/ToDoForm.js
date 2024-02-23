@@ -15,7 +15,7 @@ const ToDoForm = ({ submitToDo }) => {
                 <Button
                     title="Add Item"
                     color="#c9184a"
-                    onPress={submitToDo(toDoInput)}
+                    onPress={() => submitToDo(toDoInput)}
                 />
             </View>
         </View>
