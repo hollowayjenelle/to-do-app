@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native'
 
-const ToDoForm = () => {
+const ToDoForm = ({ submitToDo }) => {
+    const [toDoInput, setToDoInput] = useState('')
     return (
         <View style={styles.formContainer}>
             <Text style={styles.formTitle}>Enter an item:</Text>
@@ -9,8 +10,13 @@ const ToDoForm = () => {
                 <TextInput
                     placeholder="eg: Buy pens"
                     style={styles.inputField}
+                    onChangeText={(val) => setToDoInput(val)}
                 />
-                <Button title="Add Item" color="#c9184a" />
+                <Button
+                    title="Add Item"
+                    color="#c9184a"
+                    onPress={submitToDo(toDoInput)}
+                />
             </View>
         </View>
     )

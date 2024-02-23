@@ -12,14 +12,27 @@ import ToDoForm from './components/ToDoForm'
 export default function App() {
     //Add to-dos state here
     const [todos, setToDos] = useState([
-        { name: 'Buy edge control', id: 1 },
-        { name: 'Buy coffee', id: 2 },
+        { id: 1, name: 'Buy edge control', completed: false },
+        { id: 2, name: 'Buy coffee', completed: false },
     ])
+
+    const addToDo = (todo) => {
+        if (todos.length === 0) {
+            setToDos([{ id: 1, name: todo, completed: false }])
+            return
+        }
+
+        const lastToDo = todos[todos.length - 1]
+        setToDos((prevToDos) => [
+            ...prevToDos,
+            { id: lastToDo.id + 1, name: todo, completed: false },
+        ])
+    }
 
     return (
         <View style={styles.container}>
             <Header />
-            <ToDoForm />
+            <ToDoForm submitToDo={addToDo} />
             <FlatList
                 data={todos}
                 keyExtractor={(todo) => todo.id}
