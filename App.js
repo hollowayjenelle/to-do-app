@@ -24,6 +24,10 @@ export default function App() {
         ])
     }
 
+    const deleteToDo = (todoId) => {
+        setToDos((prevToDos) => prevToDos.filter((todo) => todo.id !== todoId))
+    }
+
     return (
         <View style={styles.container}>
             <Header />
@@ -31,7 +35,9 @@ export default function App() {
             <FlatList
                 data={todos}
                 keyExtractor={(todo) => todo.id}
-                renderItem={({ item }) => <ToDoItem item={item} />}
+                renderItem={({ item }) => (
+                    <ToDoItem item={item} pressHandler={deleteToDo} />
+                )}
             />
         </View>
     )
