@@ -1,13 +1,16 @@
-import React from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
+import React from 'react'
+import { StyleSheet, View, Text, TextInput, Button } from 'react-native'
 
 const ToDoForm = () => {
-    return(
+    return (
         <View style={styles.formContainer}>
             <Text style={styles.formTitle}>Enter an item:</Text>
             <View style={styles.inputContainer}>
-                <TextInput placeholder="eg: Buy pens" style={styles.inputField}/>
-                <Button title="Add Item" color='#c9184a'/>
+                <TextInput
+                    placeholder="eg: Buy pens"
+                    style={styles.inputField}
+                />
+                <Button title="Add Item" color="#c9184a" />
             </View>
         </View>
     )
@@ -15,17 +18,16 @@ const ToDoForm = () => {
 
 const styles = StyleSheet.create({
     formContainer: {
-        flex: 1,
         alignItems: 'center',
-        marginTop: 20,
+        marginVertical: 20,
     },
     formTitle: {
-        fontSize: 22
+        fontSize: 22,
     },
     inputContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 10
+        marginTop: 10,
     },
     inputField: {
         borderWidth: 2,
@@ -33,10 +35,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: 200,
         padding: 5,
-        marginRight: 5
-    }
-
+        marginRight: 5,
+    },
 })
-
 
 export default ToDoForm
