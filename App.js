@@ -1,11 +1,5 @@
 import React, { useState } from 'react'
-import {
-    StyleSheet,
-    Text,
-    View,
-    FlatList,
-    TouchableOpacity,
-} from 'react-native'
+import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
 import Header from './components/Header'
 import ToDoForm from './components/ToDoForm'
 import ToDoItem from './components/ToDoItem'
@@ -18,10 +12,18 @@ export default function App() {
     ])
 
     const addToDo = (todo) => {
-        setToDos((prevToDos) => [
-            ...prevToDos,
-            { id: todos.length + 1, name: todo, completed: false },
-        ])
+        if (todo.length > 3) {
+            setToDos((prevToDos) => [
+                ...prevToDos,
+                { id: todos.length + 1, name: todo, completed: false },
+            ])
+        } else {
+            Alert.alert(
+                'OOPS!',
+                'Todos must be greater than 3 characters long',
+                [{ text: 'Understood' }]
+            )
+        }
     }
 
     const deleteToDo = (todoId) => {
