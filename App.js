@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, FlatList, Alert } from 'react-native'
+import {
+    StyleSheet,
+    Text,
+    View,
+    FlatList,
+    Alert,
+    TouchableWithoutFeedback,
+    Keyboard,
+} from 'react-native'
 import Header from './components/Header'
 import ToDoForm from './components/ToDoForm'
 import ToDoItem from './components/ToDoItem'
@@ -31,17 +39,24 @@ export default function App() {
     }
 
     return (
-        <View style={styles.container}>
-            <Header />
-            <ToDoForm submitToDo={addToDo} />
-            <FlatList
-                data={todos}
-                keyExtractor={(todo) => todo.id}
-                renderItem={({ item }) => (
-                    <ToDoItem item={item} pressHandler={deleteToDo} />
-                )}
-            />
-        </View>
+        <TouchableWithoutFeedback
+            onPress={() => {
+                Keyboard.dismiss()
+            }}
+            // this dismiss the keyboard when the user touches outside the input box
+        >
+            <View style={styles.container}>
+                <Header />
+                <ToDoForm submitToDo={addToDo} />
+                <FlatList
+                    data={todos}
+                    keyExtractor={(todo) => todo.id}
+                    renderItem={({ item }) => (
+                        <ToDoItem item={item} pressHandler={deleteToDo} />
+                    )}
+                />
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
 
